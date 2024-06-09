@@ -33,6 +33,138 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/dt_cliente')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "linkedsqldatabase",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "inputs"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "IDCLI",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "CODCLI",
+						"type": "nvarchar"
+					},
+					{
+						"name": "NOMCLI",
+						"type": "nvarchar"
+					},
+					{
+						"name": "FECCARGA",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "CODUBIGEO",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "CODSECTECON",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "CODMRCADO",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "codgenero",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "fecnac",
+						"type": "date"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "CLIENTE"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/linkedsqldatabase')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/dt_out_cliente')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "linkedblobstorage",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "outputs"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "cliente.csv",
+						"folderPath": "cliente",
+						"container": "raw"
+					},
+					"columnDelimiter": "|",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/linkedblobstorage')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/dt_out_producto')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "linkedblobstorage",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "outputs"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "producto.csv",
+						"folderPath": "producto",
+						"container": "raw"
+					},
+					"columnDelimiter": "|",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/linkedblobstorage')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/dt_producto')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
