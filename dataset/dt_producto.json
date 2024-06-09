@@ -1,0 +1,55 @@
+{
+	"name": "dt_producto",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "linkedsqldatabase",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "inputs"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "IDPRODUCTO",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "NOMPROD",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CODPROD",
+				"type": "nvarchar"
+			},
+			{
+				"name": "MTOPRECUNIT",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 3
+			},
+			{
+				"name": "FECCARGA",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "CODSUBCAT",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CODMNDA",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "PRODUCTO"
+		}
+	}
+}
