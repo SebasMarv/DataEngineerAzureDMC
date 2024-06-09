@@ -1,0 +1,63 @@
+{
+	"name": "dt_cliente",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "linkedsqldatabase",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "inputs"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "IDCLI",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CODCLI",
+				"type": "nvarchar"
+			},
+			{
+				"name": "NOMCLI",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FECCARGA",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "CODUBIGEO",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CODSECTECON",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CODMRCADO",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "codgenero",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "fecnac",
+				"type": "date"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "CLIENTE"
+		}
+	}
+}
