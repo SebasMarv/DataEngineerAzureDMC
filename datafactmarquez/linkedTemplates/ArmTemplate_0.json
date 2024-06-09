@@ -337,6 +337,8 @@
 					{
 						"name": "copia_producto",
 						"type": "Copy",
+						"state": "Inactive",
+						"onInactiveMarkAs": "Succeeded",
 						"dependsOn": [],
 						"policy": {
 							"timeout": "0.12:00:00",
@@ -387,6 +389,60 @@
 								"parameters": {}
 							}
 						]
+					},
+					{
+						"name": "copia_cliente",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"sink": {
+								"type": "DelimitedTextSink",
+								"storeSettings": {
+									"type": "AzureBlobStorageWriteSettings"
+								},
+								"formatSettings": {
+									"type": "DelimitedTextWriteSettings",
+									"quoteAllText": true,
+									"fileExtension": ".txt"
+								}
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "dt_cliente",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "dt_out_cliente",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
 					}
 				],
 				"policy": {
@@ -396,7 +452,9 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/dt_producto')]",
-				"[concat(variables('factoryId'), '/datasets/dt_out_producto')]"
+				"[concat(variables('factoryId'), '/datasets/dt_out_producto')]",
+				"[concat(variables('factoryId'), '/datasets/dt_cliente')]",
+				"[concat(variables('factoryId'), '/datasets/dt_out_cliente')]"
 			]
 		}
 	]
