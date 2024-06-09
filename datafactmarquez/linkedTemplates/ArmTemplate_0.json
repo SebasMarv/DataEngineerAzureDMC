@@ -259,6 +259,145 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/linkedsqldatabase')]"
 			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/dt_vendedor')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "linkedsqldatabase",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "inputs"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "IDCLI",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "CODCLI",
+						"type": "nvarchar"
+					},
+					{
+						"name": "NOMCLI",
+						"type": "nvarchar"
+					},
+					{
+						"name": "FECCARGA",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "CODUBIGEO",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "CODSECTECON",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "CODMRCADO",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "codgenero",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "fecnac",
+						"type": "date"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "CLIENTE"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/linkedsqldatabase')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/pipeline1')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "copia_producto",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"sink": {
+								"type": "DelimitedTextSink",
+								"storeSettings": {
+									"type": "AzureBlobStorageWriteSettings"
+								},
+								"formatSettings": {
+									"type": "DelimitedTextWriteSettings",
+									"quoteAllText": true,
+									"fileExtension": ".txt"
+								}
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "dt_producto",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "dt_out_producto",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/dt_producto')]",
+				"[concat(variables('factoryId'), '/datasets/dt_out_producto')]"
+			]
 		}
 	]
 }
