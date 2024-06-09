@@ -1,0 +1,53 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "dt_cliente",
+						"type": "DatasetReference"
+					},
+					"name": "dflowcliente"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "dt_out_cliente",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "filter1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          IDCLI as integer,",
+				"          CODCLI as string,",
+				"          NOMCLI as string,",
+				"          FECCARGA as timestamp,",
+				"          CODUBIGEO as integer,",
+				"          CODSECTECON as integer,",
+				"          CODMRCADO as integer,",
+				"          codgenero as integer,",
+				"          fecnac as date",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> dflowcliente",
+				"dflowcliente filter(ERROR_FUNCTION('')) ~> filter1",
+				"filter1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink1"
+			]
+		}
+	}
+}
