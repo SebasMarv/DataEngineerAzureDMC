@@ -1,0 +1,23 @@
+{
+	"name": "dt_out_proc_cliente",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "linkedblobstorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "outputs"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"folderPath": "cliente",
+				"container": "processed"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}

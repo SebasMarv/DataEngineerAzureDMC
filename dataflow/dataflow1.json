@@ -21,11 +21,7 @@
 					"name": "sink1"
 				}
 			],
-			"transformations": [
-				{
-					"name": "filter1"
-				}
-			],
+			"transformations": [],
 			"scriptLines": [
 				"source(output(",
 				"          IDCLI as integer,",
@@ -42,8 +38,7 @@
 				"     validateSchema: false,",
 				"     isolationLevel: 'READ_UNCOMMITTED',",
 				"     format: 'table') ~> dflowcliente",
-				"dflowcliente filter(ERROR_FUNCTION('')) ~> filter1",
-				"filter1 sink(allowSchemaDrift: true,",
+				"dflowcliente sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> sink1"
