@@ -1,0 +1,27 @@
+{
+	"name": "dt_out_cliente",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "linkedblobstorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "outputs"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "cliente.csv",
+				"folderPath": "cliente",
+				"container": "raw"
+			},
+			"columnDelimiter": "|",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
