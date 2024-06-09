@@ -1,0 +1,132 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "datafactmarquez"
+		},
+		"linkedblobstorage_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'linkedblobstorage'"
+		},
+		"linkedsqldatabase_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'linkedsqldatabase'"
+		},
+		"linkedsqldatabase_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "serverdmcmarquez.database.windows.net"
+		},
+		"linkedsqldatabase_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "tallerdmcdata"
+		},
+		"linkedsqldatabase_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "admindmc"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/dt_producto')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "linkedsqldatabase",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "inputs"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "IDPRODUCTO",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "NOMPROD",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CODPROD",
+						"type": "nvarchar"
+					},
+					{
+						"name": "MTOPRECUNIT",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 3
+					},
+					{
+						"name": "FECCARGA",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "CODSUBCAT",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "CODMNDA",
+						"type": "int",
+						"precision": 10
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "PRODUCTO"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/linkedsqldatabase')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/linkedblobstorage')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('linkedblobstorage_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/linkedsqldatabase')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"server": "[parameters('linkedsqldatabase_properties_typeProperties_server')]",
+					"database": "[parameters('linkedsqldatabase_properties_typeProperties_database')]",
+					"encrypt": "mandatory",
+					"trustServerCertificate": false,
+					"hostNameInCertificate": "",
+					"authenticationType": "SQL",
+					"userName": "[parameters('linkedsqldatabase_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('linkedsqldatabase_password')]"
+					}
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}
