@@ -1,5 +1,5 @@
 {
-	"name": "dt_vendedor",
+	"name": "dt_ubigeo",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "linkedsqldatabase",
@@ -12,30 +12,29 @@
 		"type": "AzureSqlTable",
 		"schema": [
 			{
-				"name": "CODVEND",
+				"name": "CODUBIGEO",
 				"type": "int",
 				"precision": 10
 			},
 			{
-				"name": "NOMVEND",
+				"name": "CODPOSTAL",
 				"type": "nvarchar"
 			},
 			{
-				"name": "CODMNDA",
-				"type": "int",
-				"precision": 10
+				"name": "NOMCIUDAD",
+				"type": "nvarchar"
 			},
 			{
-				"name": "MTOSUELDOBASE",
-				"type": "decimal",
-				"precision": 18,
-				"scale": 2
+				"name": "NOMESTADO",
+				"type": "nvarchar"
 			},
 			{
-				"name": "PCTCOMIS",
-				"type": "decimal",
-				"precision": 18,
-				"scale": 2
+				"name": "NOMPAIS",
+				"type": "nvarchar"
+			},
+			{
+				"name": "NOMREGION",
+				"type": "nvarchar"
 			},
 			{
 				"name": "FECCARGA",
@@ -46,7 +45,7 @@
 		],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "VENDEDOR"
+			"table": "UBIGEO"
 		}
 	}
 }

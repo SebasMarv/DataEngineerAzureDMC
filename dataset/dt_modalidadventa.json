@@ -1,5 +1,5 @@
 {
-	"name": "dt_vendedor",
+	"name": "dt_modalidadventa",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "linkedsqldatabase",
@@ -12,30 +12,13 @@
 		"type": "AzureSqlTable",
 		"schema": [
 			{
-				"name": "CODVEND",
+				"name": "CODMODVALVTA",
 				"type": "int",
 				"precision": 10
 			},
 			{
-				"name": "NOMVEND",
+				"name": "DESMODVALVTA",
 				"type": "nvarchar"
-			},
-			{
-				"name": "CODMNDA",
-				"type": "int",
-				"precision": 10
-			},
-			{
-				"name": "MTOSUELDOBASE",
-				"type": "decimal",
-				"precision": 18,
-				"scale": 2
-			},
-			{
-				"name": "PCTCOMIS",
-				"type": "decimal",
-				"precision": 18,
-				"scale": 2
 			},
 			{
 				"name": "FECCARGA",
@@ -46,7 +29,7 @@
 		],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "VENDEDOR"
+			"table": "MODALIDADVENTA"
 		}
 	}
 }

@@ -1,0 +1,154 @@
+{
+	"name": "dt_pedido",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "linkedsqldatabase",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "inputs"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "IDPEDIDO",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CODPEDID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FECPEDID",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "FECENV",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "CODCLI",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CODPROD",
+				"type": "nvarchar"
+			},
+			{
+				"name": "MTOVALUNIT",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "CTDPEDID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "MTOSUBT",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "MTODSCTO",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "MTOBENEF",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "MTOVALVTA",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "MTOIGV",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "MTOSUBTPROD",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "MTOCSTOENV",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "MTOTOTPROD",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "CODMODVALVTA",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CODMEDIOPAGO",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CODVEND",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CODMNDA",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "IDCLI",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "IDPRODUCTO",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CODMODALENV",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CODPRIORPEDI",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "FECCARGA",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "PEDIDO"
+		}
+	}
+}

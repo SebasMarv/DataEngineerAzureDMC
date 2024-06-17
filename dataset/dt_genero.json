@@ -1,0 +1,33 @@
+{
+	"name": "dt_genero",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "linkedsqldatabase",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "inputs"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "IDGENERO",
+				"type": "tinyint",
+				"precision": 3
+			},
+			{
+				"name": "DESGENERO",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FECCARGA",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "GENERO"
+		}
+	}
+}

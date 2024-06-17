@@ -1,5 +1,5 @@
 {
-	"name": "dt_vendedor",
+	"name": "dt_moneda",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "linkedsqldatabase",
@@ -12,30 +12,21 @@
 		"type": "AzureSqlTable",
 		"schema": [
 			{
-				"name": "CODVEND",
-				"type": "int",
-				"precision": 10
-			},
-			{
-				"name": "NOMVEND",
-				"type": "nvarchar"
-			},
-			{
 				"name": "CODMNDA",
 				"type": "int",
 				"precision": 10
 			},
 			{
-				"name": "MTOSUELDOBASE",
-				"type": "decimal",
-				"precision": 18,
-				"scale": 2
+				"name": "DESMNDA",
+				"type": "nvarchar"
 			},
 			{
-				"name": "PCTCOMIS",
-				"type": "decimal",
-				"precision": 18,
-				"scale": 2
+				"name": "DESISO",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DESSIMB",
+				"type": "nvarchar"
 			},
 			{
 				"name": "FECCARGA",
@@ -46,7 +37,7 @@
 		],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "VENDEDOR"
+			"table": "MONEDA"
 		}
 	}
 }
