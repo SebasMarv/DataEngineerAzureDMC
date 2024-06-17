@@ -1,0 +1,27 @@
+{
+	"name": "dt_out_ubigeo",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "linkedblobstorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "outputs"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "ubigeo.csv",
+				"folderPath": "ubigeo",
+				"container": "raw"
+			},
+			"columnDelimiter": "|",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}

@@ -1,0 +1,27 @@
+{
+	"name": "dt_out_segmento",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "linkedblobstorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "outputs"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "segmento.csv",
+				"folderPath": "segmento",
+				"container": "raw"
+			},
+			"columnDelimiter": "|",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}

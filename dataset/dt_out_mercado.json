@@ -1,0 +1,27 @@
+{
+	"name": "dt_out_mercado",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "linkedblobstorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "outputs"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "mercado.csv",
+				"folderPath": "mercado",
+				"container": "raw"
+			},
+			"columnDelimiter": "|",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
